@@ -15,3 +15,11 @@ Tasks to be done
 ## Softwares Used
 - Developed in Gradio (Python package)
 - For Stable Diffusion, use one of the  [implementations here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services) to build it on our app. 
+
+
+# Instructions for Development
+1. Use the `dev` branch for all development purposes
+    - The `main` branch will be used only for pushing major updates
+2. Use a seperate branch for each module of the web interface such as `image-inpainting`, `classifier`, `pixel-wise-subtraction` etc, and then once its done, push it to the `dev` branch.
+3. Once development has been finished, we push it to the `main` branch.
+
