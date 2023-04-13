@@ -1,4 +1,5 @@
 import gradio as gr
+from pixelwise_subtraction import pixelwise_subtraction_gradio
 
 
 def greet(img):
@@ -17,8 +18,6 @@ with gr.Blocks() as demo:
         <h3 style="text-align: center;">Roshan Thomas, Fathima Hakeem, Moussa Judia, Farah Shabbir</h3>
         """
     )
-
-    # gr.Image(value="./images/methods_chart.png", theme=gr.themes.Default(spacing_size="sm"))
 
     with gr.Tab("Automatic Severity Rating"):
         image = gr.Image()
@@ -56,14 +55,14 @@ with gr.Blocks() as demo:
 
             with gr.Column(scale=2):
                 # Outputs
-                difference_image = gr.Image(label="Difference Image")
-                heatmap_image = gr.Image(label="Heatmap")
                 severity_rating = gr.Label(label="Severity Rating")
+                difference_image = gr.Image(label="Difference Map").style(height=300)
+                heatmap_image = gr.Image(label="Heatmap").style(height=300)
 
-
+    
         submit_button = gr.Button("Submit", variant="primary")
-        submit_button.click(fn=pixel_wise, inputs=[original_image, normalized_image], outputs=[difference_image, heatmap_image, severity_rating])
-
+        submit_button.click(fn=pixelwise_subtraction_gradio, inputs=[original_image, normalized_image], outputs=[difference_image, heatmap_image, severity_rating])
+             
 
 demo.launch()
 
