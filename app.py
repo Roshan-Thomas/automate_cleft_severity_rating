@@ -1,5 +1,6 @@
 import gradio as gr
 from pixelwise_subtraction import pixelwise_subtraction_gradio
+from image_inpainting.ui import image_inpainting_ui
 
 
 def greet(img):
@@ -59,7 +60,14 @@ with gr.Blocks() as demo:
 
     
         submit_button = gr.Button("Submit", variant="primary")
-        submit_button.click(fn=pixelwise_subtraction_gradio, inputs=[original_image, normalized_image], outputs=[difference_image, heatmap_image, severity_rating])
+        submit_button.click(
+            fn=pixelwise_subtraction_gradio, 
+            inputs=[original_image, normalized_image], 
+            outputs=[difference_image, heatmap_image, severity_rating]
+        )
+
+    with gr.Tab("Stable Diffusion UI"):
+        image_inpainting_ui()
         
 demo.launch()
 
