@@ -1,8 +1,8 @@
 import gradio as gr
+
 from pixelwise_subtraction.ui import pixelwise_subtraction_ui
 from image_inpainting.ui import image_inpainting_ui
-from diffusers import StableDiffusionInpaintPipeline
-import torch
+from cnn_classifier.ui import classifier_ui
 
 
 def greet(img):
@@ -30,6 +30,9 @@ with gr.Blocks() as demo:
             outputs=output,
             fn=greet,
         )
+
+    with gr.Tab("CNN Classifer"):
+        classifier_ui()
 
     with gr.Tab("Image Inpainting"):
         image_inpainting_ui()
