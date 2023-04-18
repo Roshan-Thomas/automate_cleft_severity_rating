@@ -1,1 +1,2 @@
-./__pycache__/*
+__pycache__
+image_inpainting/__pycache__
