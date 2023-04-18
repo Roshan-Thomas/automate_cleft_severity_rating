@@ -23,3 +23,29 @@ Tasks to be done
 2. Use a seperate branch for each module of the web interface such as `image-inpainting`, `classifier`, `pixel-wise-subtraction` etc, and then once its done, push it to the `dev` branch.
 3. Once development has been finished, we push it to the `main` branch.
 
+# Instructions for Running Project
+
+1. Create a `conda` environment `gradio_webui_seniordesign` (or any other name, but remeber what name you called it)
+    ```
+    conda create --name gradio_webui_seniordesign
+    ```
+
+2. Activate conda environment
+    ```
+    conda activate gradio_webui_seniordesign
+    ```
+
+3. Install all the required dependencies
+    ```
+    pip install -r requirements.txt 
+    ```
+
+4. Start the gradio app
+    ```
+    gradio app.py
+    ```
+
+5. Use a local browser to view the live website. The url is http://127.0.0.1:7860/?__theme=dark
+
+
+

@@ -1,8 +1,8 @@
 # Pixel Wise Subtraction Functions
 
 import numpy as np
-from skimage import io
 import cv2
+import matplotlib.cm as cm
 
 
 def morph_erosion(img):
@@ -36,7 +36,7 @@ def morph_erosion(img):
     return eroded_img
 
 
-def Pxl_score(path1: str, path2: str) -> float:
+def Pxl_score(original_image, normalized_image) -> float:
     """
     Calculate Pixel-wise subtraction score. Function also does morphological 
     erosion on image and normalizes the score from 1-7.
@@ -52,12 +52,10 @@ def Pxl_score(path1: str, path2: str) -> float:
     score: Severity Rating Score
     """
 
-    image1 = io.imread(path1)
-    image2 = io.imread(path2)
 
-    assert image1.shape == image2.shape, "Images must have the same dimensions"
+    assert original_image.shape == normalized_image.shape, "Images must have the same dimensions"
     
-    difference_image = cv2.absdiff(image1, image2)
+    difference_image = cv2.absdiff(original_image, normalized_image)
 
     blue, green, red = cv2.split(difference_image)
 
@@ -78,11 +76,18 @@ def Pxl_score(path1: str, path2: str) -> float:
     PxlSub = 1.15-(np.log10(rmse))
     score = 7*((PxlSub - 0) / (0.35 - 0))
 
-    return score
+    return score, merged_img
 
-if __name__ == "__main__":
-    name1="Abdulla/13_images/cleft/1.png"
-    name2='Abdulla/11_images/Standard_mask1.png'
+def heatmap_generation(eroded_image):
+    image = eroded_image
+    gray = np.mean(image, axis=2)
+    gray_norm = gray / np.max(gray)
+    heatmap = cm.jet(gray_norm)
+    
+    return heatmap
 
-    x=Pxl_score(name1, name2)
-    print("{:.2f}".format(x))
+def pixelwise_subtraction_gradio(original_image, normalized_image):
+    severity_rating, merged_img = Pxl_score(original_image=original_image, normalized_image=normalized_image)
+    heatmap = heatmap_generation(merged_img)
+
+    return (merged_img, heatmap, "{:.4f}".format(severity_rating))
