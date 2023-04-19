@@ -90,4 +90,4 @@ def pixelwise_subtraction_gradio(original_image, normalized_image):
     severity_rating, merged_img = Pxl_score(original_image=original_image, normalized_image=normalized_image)
     heatmap = heatmap_generation(merged_img)
 
-    return (merged_img, heatmap, "{:.4f}".format(severity_rating))
+    return (merged_img, heatmap, severity_rating)

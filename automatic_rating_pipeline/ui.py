@@ -7,19 +7,24 @@ def greet(img):
 
 
 def automatic_rating_ui():
-    image = gr.Image()
-    severity_rating = gr.Label(label="Severity Rating")
+    with gr.Row():
+        with gr.Column():
+            input_image = gr.Image()
+            submit_button = gr.Button("Submit", variant="primary")
+        with gr.Column():
+            severity_rating = gr.Label(label="Severity Rating")
+            classifier_image = gr.Image(label="Image with Mask Applied")
+            image_inpainted_image = gr.Image(label="Normalized Image")
 
-    submit_button = gr.Button("Submit", variant="primary")
     submit_button.click(
         fn=automatic_rating_pipeline,
-        inputs=image,
-        outputs=severity_rating
+        inputs=input_image,
+        outputs=[severity_rating, classifier_image, image_inpainted_image]
     )
 
     gr.Examples(
         examples=["examples/1.png", "examples/3.png", "examples/4.png", "examples/8.png", "examples/12.png"],
-        inputs=image,
-        outputs=severity_rating,
+        inputs=input_image,
+        outputs=[severity_rating, classifier_image, image_inpainted_image],
         fn=automatic_rating_pipeline,
     )
