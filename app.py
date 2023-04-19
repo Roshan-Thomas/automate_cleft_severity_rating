@@ -6,10 +6,6 @@ from image_inpainting.ui import image_inpainting_ui
 from cnn_classifier.ui import classifier_ui
 
 
-def greet(img):
-    severity_rating = "3.736"
-    return(f"Severity Rating: {severity_rating}")
-
 with gr.Blocks() as demo:
     gr.Markdown(
         """
