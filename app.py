@@ -1,5 +1,6 @@
 import gradio as gr
 
+from automatic_rating_pipeline.ui import automatic_rating_ui
 from pixelwise_subtraction.ui import pixelwise_subtraction_ui
 from image_inpainting.ui import image_inpainting_ui
 from cnn_classifier.ui import classifier_ui
@@ -18,18 +19,7 @@ with gr.Blocks() as demo:
     )
 
     with gr.Tab("Automatic Severity Rating"):
-        image = gr.Image()
-        output = gr.Label(label="Severity Rating")
-
-        submit_button = gr.Button("Submit", variant="primary")
-        submit_button.click(fn=greet, inputs=image, outputs=output)
-
-        gr.Examples(
-            examples=["./examples/1.png", "./examples/3.png", "./examples/4.png", "./examples/8.png", "./examples/12.png"],
-            inputs=image,
-            outputs=output,
-            fn=greet,
-        )
+        automatic_rating_ui()
 
     with gr.Tab("CNN Classifer"):
         classifier_ui()
@@ -41,7 +31,9 @@ with gr.Blocks() as demo:
         pixelwise_subtraction_ui()
 
     
-demo.launch(debug=True)
+# demo.launch(debug=True) # on linux systems
+
+demo.launch(debug=True, server_port=8080)
 
 
 
