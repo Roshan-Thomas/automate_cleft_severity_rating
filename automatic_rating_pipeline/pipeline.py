@@ -31,4 +31,4 @@ def automatic_rating_pipeline(input_image):
 
     print("[INFO] Generated Severity Score")
 
-    return severity_rating
+    return (severity_rating, masked_nasolabial_area_image, normalized_image)

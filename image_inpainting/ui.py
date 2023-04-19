@@ -20,8 +20,7 @@ def image_inpainting(input_image, mask_image, cfg_scale, seed):
     input_image = Image.fromarray(color_converted_input)
 
     mask_image = imutils.resize(mask_image, width=512)
-    color_converted_mask = cv2.cvtColor(mask_image, cv2.COLOR_BGR2RGB)
-    mask_image = Image.fromarray(color_converted_mask)
+    mask_image = Image.fromarray(mask_image)
 
     model_path = "runwayml/stable-diffusion-inpainting"
 
