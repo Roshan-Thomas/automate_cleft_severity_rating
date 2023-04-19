@@ -37,7 +37,7 @@ def image_inpainting(dict, sampling_method, sampling_steps, width, height, cfg_s
     return (output_image[0])
 
 
-def image_inpainting_ui(mask_image):
+def image_inpainting_ui():
     with gr.Row():
         with gr.Column():
             submit_button = gr.Button("Generate", variant="primary")

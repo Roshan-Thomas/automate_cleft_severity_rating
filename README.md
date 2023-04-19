@@ -17,9 +17,13 @@ This research did successfully provide a definite quantitative rating scale for 
 
 ## Results
 
+![results_graphs](./images/Results_Graphs.jpeg)
+
+
+
 # Demo Day - Web Interface 
 
-![web_interface](./images/Web%20Interface%20Doctor%20-%20Mockup_1.1.1.png)
+![web_interface](./images/Web%20Interface%20Doctor%20-%20Mockup_1.png)
 
 ## Setup
 
